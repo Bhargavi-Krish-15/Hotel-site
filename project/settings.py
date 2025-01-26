@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap5',
 
     'property',
+    'agents',
+    'about',
+    'contact',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +138,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# inorder to send email
+# this is just fo ruse in development server , doesnt realy sned mail but just print in the console.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'test@gmail.com'
+# for authentication purpose - username to use for the smtp server
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+# secure connection
+EMAIL_USE_TLS = False
+EMAIL_PORT = 1025

@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block body %}
+{% extends "base.html" %} 
+{% load bootstrap5 %}
+{% block body %}
 <section class="probootstrap-slider flexslider2 page-inner">
   <div class="overlay"></div>
   <div class="probootstrap-wrap-banner">
@@ -51,6 +53,30 @@
         <p>Beds - {{property_detail.bed_count}}</p>
         <p>Bath - {{property_detail.bath_count}}</p>
         <p>Garage - {{property_detail.garage_count}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="probootstrap-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Wanna Stay here ??</h2>
+        {% comment %} csrf token used to verify if that request came from the
+        user's action {% endcomment %}
+        {% comment %} as we are callinf post method here this checks the code for post methos in views.py {% endcomment %}
+        <form action="" method="POST">
+          {% comment %} this actuualy does automatically create
+          a text box field name for us {% endcomment %} 
+          {% comment %} {{reserve_form}} {% endcomment %}
+          {% csrf_token %}
+          {% bootstrap_form reserve_form %}
+          {% bootstrap_button button_type="submit" content="Reserve Room Now" %}
+          {% comment %} <button type="submit" class="btn btn-primary">
+            Reserve Room Now
+          </button> {% endcomment %}
+        </form>
       </div>
     </div>
   </div>

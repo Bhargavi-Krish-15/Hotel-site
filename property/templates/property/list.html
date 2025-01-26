@@ -27,62 +27,70 @@
 <section class="probootstrap-section probootstrap-section-lighter">
   <div class="container">
     <div class="row">
-      {% for property in properties_list %}
-      <div class="col-md-4 col-sm-6">
-        <div class="probootstrap-card probootstrap-listing">
-          <div class="probootstrap-card-media">
-            <img
-              src="{{property.image.url}}"
-              class="img-responsive"
-              alt="Free HTML5 Template by uicookies.com"
-            />
-            {% comment %}
-            <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
-            {% endcomment %}
-          </div>
-          <div class="probootstrap-card-text">
-            <h2 class="probootstrap-card-heading">
-              <a href="{% url 'property:property_detail' property.id %}"
-                >{{property}}</a
-              >
-            </h2>
-            <div class="probootstrap-listing-location">
-              <i class="icon-location2"></i>
-              <span>360 W Wellington Chicago, IL 60657</span>
+      {% comment %} iterate all the properties to list it  {% endcomment %}
+      {% if property_list %}
+        {% for property in property_list %}
+          <div class="col-md-4 col-sm-6">
+            <div class="probootstrap-card probootstrap-listing">
+              <div class="probootstrap-card-media">
+                <img
+                  src="{{property.image.url}}"
+                  class="img-responsive"
+                  alt="Free HTML5 Template by uicookies.com"
+                />
+                {% comment %}
+                <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
+                {% endcomment %}
+              </div>
+              <div class="probootstrap-card-text">
+                <h2 class="probootstrap-card-heading">
+                  {% comment %} passing the id so that we know which property this pic belongs to and we also passed the id in urls.py {% endcomment %}
+                  <a href="{% url 'property:property_detail' property.id %}"
+                    >{{property}}</a
+                  >
+                </h2>
+                <div class="probootstrap-listing-location">
+                  <i class="icon-location2"></i>
+                  <span>360 W Wellington Chicago, IL 60657</span>
+                </div>
+                <div class="probootstrap-listing-category for-sale">
+                  {% if property.property_type == 'S' %}
+                  <span>for sale</span>
+                  {% endif %}
+                </div>
+                <div class="probootstrap-listing-price">
+                  <strong>$ {{property.price}}</strong> / night
+                </div>
+              </div>
+              <div class="probootstrap-card-extra">
+                <ul>
+                  <li>
+                    Area
+                    <span>{{property.area}} m2</span>
+                  </li>
+                  <li>
+                    Beds
+                    <span>{{property.bed_count}}</span>
+                  </li>
+                  <li>
+                    Baths
+                    <span>{{property.bath_count}}</span>
+                  </li>
+                  <li>
+                    Garages
+                    <span>{{property.garage_count}}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="probootstrap-listing-category for-sale">
-              {% if property.property_type == 'S' %}
-              <span>for sale</span>
-              {% endif %}
-            </div>
-            <div class="probootstrap-listing-price">
-              <strong>$ {{property.price}}</strong> / night
-            </div>
+            <!-- END listing -->
           </div>
-          <div class="probootstrap-card-extra">
-            <ul>
-              <li>
-                Area
-                <span>{{property.area}} m2</span>
-              </li>
-              <li>
-                Beds
-                <span>{{property.bed_count}}</span>
-              </li>
-              <li>
-                Baths
-                <span>{{property.bath_count}}</span>
-              </li>
-              <li>
-                Garages
-                <span>{{property.garage_count}}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- END listing -->
-      </div>
-      {% endfor %}
+        {% endfor %}
+      {% else %}
+          <div class="col-md-4 col-sm-6">
+            <h2>No Room Found!</h2>
+          </div> 
+      {% endif %}
     </div>
   </div>
 </section>

@@ -1,5 +1,5 @@
-{% comment %} this command tells to load the template folder and the image files {% endcomment %}
-{% load static %}
+{% comment %} this command tells to load the template folder and the image files
+{% endcomment %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,6 +9,9 @@
       uiCookies:Haus &mdash; Free Bootstrap Theme, Free Responsive Bootstrap
       Website Template
     </title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <meta name="description" content="Free Bootstrap Theme by uicookies.com" />
     <meta
       name="keywords"
@@ -35,18 +38,18 @@
 
     <header role="banner" class="probootstrap-header">
       <div class="container">
-        <a href="index.html" class="probootstrap-logo">Haus<span>.</span></a>
+        <a href="index.html" class="probootstrap-logo">Happy Stays<span>.</span></a>
 
         <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="properties.html">Properties</a></li>
-            <li><a href="agents.html">Agents</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li {% if category_list %} class="active" {% endif %}><a href="/">Home</a></li>
+            <li {% if property_list %} class="active" {% endif %}><a href="{% url "property:property_list" %}">Rooms</a></li>
+            <li {% if agents_list %} class="active" {% endif %}><a href="{% url "agents:agents_list" %}">Agents</a></li>
+            <li {% if about %} class="active" {% endif %}><a href="{% url "about:aboutus" %}">About</a></li>
+            <li {% if contact_details %} class="active" {% endif %}><a href="{% url "contact:send_mail" %}">Contact</a></li>
           </ul>
           <div class="extra-text visible-xs">
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
